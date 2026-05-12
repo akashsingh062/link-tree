@@ -33,7 +33,6 @@ A modern, open-source Linktree alternative built from scratch in one day.
 | ⚡ **Live Preview** | See changes in real-time in a phone mockup while editing |
 | 🌈 **Animated Glow Card** | Rotating RGB border effect on public profile pages |
 | 🔔 **Toast Notifications** | Styled global notifications matching the brand |
-| 🖼️ **Optimized Images** | Next.js `<Image />` component with automatic optimization |
 
 ---
 
@@ -161,7 +160,7 @@ link-tree/
 
 ## 🧑‍💻 Built By
 
-**Akash Singh** — Solo developer, built in one day as a passion project.
+**Akash Singh** — 
 
 - GitHub: [@akashsingh062](https://github.com/akashsingh062)
 
@@ -176,7 +175,5 @@ This project is open source and available under the [MIT License](LICENSE).
 <div align="center">
 
 **If you found this project useful, consider giving it a ⭐ on GitHub!**
-
-Made with ❤️ by [Akash Singh](https://github.com/akashsingh062)
 
 </div>
