@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/db";
 import { LinkTree } from "@/lib/model/LinkTree";
+import { User } from "@/lib/model/User";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
@@ -129,8 +130,10 @@ export async function PUT(request) {
 
     // If username is being changed, check it's not taken by someone else and enforce 7-day rule
     if (body.username && body.username !== tree.username) {
-      if (tree.lastUsernameChange) {
-        const daysSinceLastChange = (new Date() - new Date(tree.lastUsernameChange)) / (1000 * 60 * 60 * 24);
+      // Check 7-day restriction on the User model (persists across tree delete/recreate)
+      const userDoc = await User.findById(user.id);
+      if (userDoc?.lastUsernameChange) {
+        const daysSinceLastChange = (new Date() - new Date(userDoc.lastUsernameChange)) / (1000 * 60 * 60 * 24);
         if (daysSinceLastChange < 7) {
           return NextResponse.json(
             { message: `You can only change your username once every 7 days. Please wait ${Math.ceil(7 - daysSinceLastChange)} more days.` },
@@ -147,7 +150,8 @@ export async function PUT(request) {
         );
       }
       tree.username = body.username;
-      tree.lastUsernameChange = new Date();
+      // Save timestamp on User model so it persists even if tree is deleted
+      await User.findByIdAndUpdate(user.id, { lastUsernameChange: new Date() });
     }
 
     // Update fields

@@ -162,7 +162,15 @@ export default function CreatePage() {
       setForm({
         title: "My Links",
         username: user?.username || "",
+        profilePicture: "",
         template: "classic",
+        customBg: {
+          bgType: "color",
+          color1: "#1f232f",
+          color2: "#304e21",
+          imageUrl: "",
+          textColor: "light",
+        },
         socialLinks: [{ platform: "Website", label: "", url: "" }],
       });
       toast.success("Link tree deleted");
@@ -289,11 +297,9 @@ export default function CreatePage() {
                     className="w-full pl-20 sm:pl-24 pr-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all duration-200 focus:border-navy focus:ring-2 focus:ring-navy/10"
                   />
                 </div>
-                {hasTree && (
-                  <p className="text-[10px] text-forest-light mt-1.5 ml-1 font-semibold">
+                <p className="text-[10px] text-forest-light mt-1.5 ml-1 font-semibold">
                     Note: Username can only be changed once every 7 days.
                   </p>
-                )}
               </div>
 
               {/* Profile Picture */}
