@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Palette */
+  --lime: 214, 231, 82;
+  --forest: 48, 78, 33;
+  --navy: 31, 35, 47;
+
+  /* Derived shades */
+  --lime-light: 228, 240, 140;
+  --lime-dark: 175, 195, 50;
+  --forest-light: 72, 110, 52;
+  --navy-light: 55, 62, 80;
+
+  --background: rgb(var(--lime));
+  --foreground: rgb(var(--forest));
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Custom palette tokens */
+  --color-lime: rgb(var(--lime));
+  --color-lime-light: rgb(var(--lime-light));
+  --color-lime-dark: rgb(var(--lime-dark));
+  --color-forest: rgb(var(--forest));
+  --color-forest-light: rgb(var(--forest-light));
+  --color-navy: rgb(var(--navy));
+  --color-navy-light: rgb(var(--navy-light));
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgb(var(--navy));
+  color: rgb(var(--lime));
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(214, 231, 82, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(214, 231, 82, 0.6); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease-out both;
+}
+
+.animate-fade-in-up-delay-1 {
+  animation: fade-in-up 0.7s ease-out 0.15s both;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fade-in-up 0.7s ease-out 0.3s both;
+}
+
+.animate-fade-in-up-delay-3 {
+  animation: fade-in-up 0.7s ease-out 0.45s both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes spin-border {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-border {
+  animation: spin-border 4s linear infinite;
 }
