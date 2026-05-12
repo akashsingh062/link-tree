@@ -212,12 +212,12 @@ export default function PublicProfilePage() {
 
   // ─── Render the user's selected template in a container ───
   return (
-    <div className={`min-h-screen ${containerBg} relative overflow-hidden`}>
+    <div className={`h-[100dvh] ${containerBg} relative overflow-hidden flex flex-col`}>
       {/* Ambient background glow */}
       {glowOrbs}
 
-      {/* Top bar */}
-      <div className="relative z-20 flex items-center justify-between max-w-2xl mx-auto px-4 py-4">
+      {/* Top bar — fixed */}
+      <div className="relative z-20 flex items-center justify-between max-w-2xl mx-auto w-full px-4 py-4 shrink-0">
         <Link
           href="/"
           className={`inline-flex items-center gap-1.5 text-xs font-bold transition-colors uppercase tracking-widest ${topBarText}`}
@@ -240,11 +240,13 @@ export default function PublicProfilePage() {
         </button>
       </div>
 
-      {/* Rotating Glow Card */}
-      <div className="relative z-10 max-w-lg mx-auto px-4 pb-8">
-        <RotatingGlowCard>
-          <ProfileTemplate tree={tree} />
-        </RotatingGlowCard>
+      {/* Fixed card area — internal content will scroll */}
+      <div className="relative z-10 flex-1 min-h-0 overflow-hidden pb-4 sm:pb-8 flex flex-col w-full">
+        <div className="max-w-lg mx-auto px-4 w-full h-full flex flex-col">
+          <RotatingGlowCard>
+            <ProfileTemplate tree={tree} />
+          </RotatingGlowCard>
+        </div>
       </div>
     </div>
   );
@@ -265,7 +267,7 @@ function RotatingGlowCard({ children }) {
   )`;
 
   return (
-    <div className="relative rounded-3xl">
+    <div className="relative rounded-3xl h-full flex flex-col">
       {/* Spinning beam — only the 2px border edge is visible */}
       <div className="absolute -inset-[2px] rounded-3xl overflow-hidden" aria-hidden>
         <div
@@ -278,7 +280,7 @@ function RotatingGlowCard({ children }) {
       </div>
 
       {/* Card content sits on top, covering the center */}
-      <div className="relative z-10 rounded-3xl overflow-hidden">
+      <div className="relative z-10 rounded-3xl overflow-hidden flex-1 flex flex-col">
         {children}
       </div>
     </div>

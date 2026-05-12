@@ -10,10 +10,11 @@ import ProfileAvatar from "@/components/ProfileAvatar";
 // Dark navy bg, lime accents, current design
 function ClassicTemplate({ tree }) {
   return (
-    <main className="flex-1 bg-navy min-h-screen relative overflow-hidden">
+    <main className="flex-1 bg-navy relative overflow-hidden flex flex-col h-full w-full">
       <div className="absolute top-20 left-10 w-96 h-96 bg-lime/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-forest/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="relative z-10 max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center">
+      <div className="relative z-10 flex-1 overflow-y-auto w-full min-h-0">
+        <div className="max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center min-h-full">
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
@@ -36,6 +37,7 @@ function ClassicTemplate({ tree }) {
           ))}
         </div>
         <Branding />
+        </div>
       </div>
     </main>
   );
@@ -45,8 +47,9 @@ function ClassicTemplate({ tree }) {
 // Clean white bg, soft shadows, elegant typography
 function MinimalTemplate({ tree }) {
   return (
-    <main className="flex-1 min-h-screen bg-stone-50">
-      <div className="max-w-md mx-auto px-4 py-16 sm:py-20 flex flex-col items-center">
+    <main className="flex-1 bg-stone-50 flex flex-col h-full w-full">
+      <div className="relative z-10 flex-1 overflow-y-auto w-full min-h-0">
+        <div className="max-w-md mx-auto px-4 py-16 sm:py-20 flex flex-col items-center min-h-full">
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
@@ -69,6 +72,7 @@ function MinimalTemplate({ tree }) {
           ))}
         </div>
         <Branding dark />
+        </div>
       </div>
     </main>
   );
@@ -78,9 +82,10 @@ function MinimalTemplate({ tree }) {
 // Vibrant gradient bg, glassmorphic cards
 function GradientTemplate({ tree }) {
   return (
-    <main className="flex-1 min-h-screen bg-gradient-to-br from-violet-600 via-fuchsia-500 to-orange-400 relative overflow-hidden">
+    <main className="flex-1 bg-gradient-to-br from-violet-600 via-fuchsia-500 to-orange-400 relative overflow-hidden flex flex-col h-full w-full">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZyIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCBmaWxsPSJ1cmwoI2cpIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PC9zdmc+')] pointer-events-none" />
-      <div className="relative z-10 max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center">
+      <div className="relative z-10 flex-1 overflow-y-auto w-full min-h-0">
+        <div className="max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center min-h-full">
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
@@ -103,6 +108,7 @@ function GradientTemplate({ tree }) {
           ))}
         </div>
         <Branding />
+        </div>
       </div>
     </main>
   );
@@ -112,10 +118,11 @@ function GradientTemplate({ tree }) {
 // Dark bg with neon glow effects
 function NeonTemplate({ tree }) {
   return (
-    <main className="flex-1 min-h-screen bg-zinc-950 relative overflow-hidden">
+    <main className="flex-1 bg-zinc-950 relative overflow-hidden flex flex-col h-full w-full">
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/3 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="relative z-10 max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center">
+      <div className="relative z-10 flex-1 overflow-y-auto w-full min-h-0">
+        <div className="max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center min-h-full">
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
@@ -138,6 +145,7 @@ function NeonTemplate({ tree }) {
           ))}
         </div>
         <Branding />
+        </div>
       </div>
     </main>
   );
@@ -180,7 +188,7 @@ function CustomTemplate({ tree }) {
   const bgStyle = bg.bgType === "image" ? {} : getCustomBgStyle(bg);
 
   return (
-    <main className="flex-1 min-h-screen relative overflow-hidden" style={bgStyle}>
+    <main className="flex-1 relative overflow-hidden flex flex-col h-full w-full" style={bgStyle}>
       {/* Image background — using <img> for cross-origin reliability */}
       {bg.bgType === "image" && bg.imageUrl && (
         <>
@@ -193,7 +201,8 @@ function CustomTemplate({ tree }) {
           <div className="absolute inset-0 bg-black/40 pointer-events-none" />
         </>
       )}
-      <div className="relative z-10 max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center">
+      <div className="relative z-10 flex-1 overflow-y-auto w-full min-h-0">
+        <div className="max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center min-h-full">
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
@@ -216,6 +225,7 @@ function CustomTemplate({ tree }) {
           ))}
         </div>
         <Branding dark={isLight} />
+        </div>
       </div>
     </main>
   );

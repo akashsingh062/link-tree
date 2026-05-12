@@ -13,6 +13,7 @@ export default function CreatePage() {
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [hasTree, setHasTree] = useState(false);
+  const [resolvingImage, setResolvingImage] = useState(false);
 
   const [form, setForm] = useState({
     title: "My Links",
@@ -308,18 +309,58 @@ export default function CreatePage() {
                   htmlFor="profilePicture"
                   className="block text-sm font-semibold text-navy mb-1.5"
                 >
-                  Profile Picture URL (Optional)
+                  Profile Picture URL
                 </label>
-                <input
-                  id="profilePicture"
-                  type="url"
-                  value={form.profilePicture}
-                  onChange={(e) =>
-                    setForm((prev) => ({ ...prev, profilePicture: e.target.value }))
-                  }
-                  placeholder="https://example.com/avatar.jpg"
-                  className="w-full px-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all duration-200 focus:border-navy focus:ring-2 focus:ring-navy/10"
-                />
+                <div className="flex gap-2">
+                  <input
+                    id="profilePicture"
+                    type="url"
+                    value={form.profilePicture}
+                    onChange={(e) =>
+                      setForm((prev) => ({ ...prev, profilePicture: e.target.value }))
+                    }
+                    placeholder="Paste any link or image URL"
+                    className="flex-1 px-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all duration-200 focus:border-navy focus:ring-2 focus:ring-navy/10"
+                  />
+                  {form.profilePicture && !form.profilePicture.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?.*)?$/i) && (
+                    <button
+                      type="button"
+                      disabled={resolvingImage}
+                      onClick={async () => {
+                        setResolvingImage(true);
+                        try {
+                          const res = await fetch(
+                            `/api/resolve-image?url=${encodeURIComponent(form.profilePicture)}`
+                          );
+                          const data = await res.json();
+                          if (res.ok && data.imageUrl) {
+                            setForm((prev) => ({ ...prev, profilePicture: data.imageUrl }));
+                            toast.success("Image resolved!");
+                          } else {
+                            toast.error(data.message || "Could not find an image");
+                          }
+                        } catch {
+                          toast.error("Failed to resolve image");
+                        } finally {
+                          setResolvingImage(false);
+                        }
+                      }}
+                      className="px-4 py-3 rounded-xl bg-navy text-lime text-xs font-bold transition-all hover:bg-forest shrink-0 disabled:opacity-60"
+                    >
+                      {resolvingImage ? (
+                        <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                      ) : (
+                        "Resolve"
+                      )}
+                    </button>
+                  )}
+                </div>
+                <p className="text-[10px] text-forest-light mt-1.5 ml-1">
+                  Paste any URL — Pinterest, Twitter, etc. Click Resolve to extract the image.
+                </p>
               </div>
             </div>
 
@@ -467,21 +508,64 @@ export default function CreatePage() {
                 {form.customBg.bgType === "image" && (
                   <div>
                     <label className="block text-sm font-semibold text-navy mb-2">Image URL</label>
-                    <input
-                      type="url"
-                      value={form.customBg.imageUrl}
-                      onChange={(e) =>
-                        setForm((prev) => ({
-                          ...prev,
-                          customBg: { ...prev.customBg, imageUrl: e.target.value },
-                        }))
-                      }
-                      placeholder="https://images.unsplash.com/..."
-                      className="w-full px-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none focus:border-navy focus:ring-2 focus:ring-navy/10"
-                    />
+                    <div className="flex gap-2">
+                      <input
+                        type="url"
+                        value={form.customBg.imageUrl}
+                        onChange={(e) =>
+                          setForm((prev) => ({
+                            ...prev,
+                            customBg: { ...prev.customBg, imageUrl: e.target.value },
+                          }))
+                        }
+                        placeholder="Paste any link or image URL"
+                        className="flex-1 px-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none focus:border-navy focus:ring-2 focus:ring-navy/10"
+                      />
+                      {form.customBg.imageUrl && !form.customBg.imageUrl.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?.*)?$/i) && (
+                        <button
+                          type="button"
+                          disabled={resolvingImage}
+                          onClick={async () => {
+                            setResolvingImage(true);
+                            try {
+                              const res = await fetch(
+                                `/api/resolve-image?url=${encodeURIComponent(form.customBg.imageUrl)}`
+                              );
+                              const data = await res.json();
+                              if (res.ok && data.imageUrl) {
+                                setForm((prev) => ({
+                                  ...prev,
+                                  customBg: { ...prev.customBg, imageUrl: data.imageUrl },
+                                }));
+                                toast.success("Image resolved!");
+                              } else {
+                                toast.error(data.message || "Could not find an image");
+                              }
+                            } catch {
+                              toast.error("Failed to resolve image");
+                            } finally {
+                              setResolvingImage(false);
+                            }
+                          }}
+                          className="px-4 py-3 rounded-xl bg-navy text-lime text-xs font-bold transition-all hover:bg-forest shrink-0 disabled:opacity-60"
+                        >
+                          {resolvingImage ? (
+                            <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                            </svg>
+                          ) : (
+                            "Resolve"
+                          )}
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-[10px] text-forest-light mt-1.5 ml-1">
+                      Paste any URL — Pinterest, Unsplash, etc. Click Resolve to extract the image.
+                    </p>
                     {form.customBg.imageUrl && (
                       <div className="mt-3 h-24 rounded-lg overflow-hidden border border-forest/10">
-                        <img src={form.customBg.imageUrl} alt="Preview" className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <img key={form.customBg.imageUrl} src={form.customBg.imageUrl} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" onError={(e) => { e.target.style.display = 'none'; }} />
                       </div>
                     )}
                   </div>
@@ -668,7 +752,7 @@ export default function CreatePage() {
                     <div className="w-24 h-5 bg-zinc-900 rounded-b-2xl" />
                   </div>
                   <div
-                    className={`rounded-[1.4rem] min-h-[480px] p-6 flex flex-col items-center overflow-hidden relative ${
+                    className={`rounded-[1.4rem] max-h-[520px] min-h-[480px] overflow-hidden flex flex-col relative ${
                       form.template === "classic" ? "bg-navy" :
                       form.template === "minimal" ? "bg-stone-50" :
                       form.template === "gradient" ? "bg-gradient-to-br from-violet-600 via-fuchsia-500 to-orange-400" :
@@ -691,7 +775,9 @@ export default function CreatePage() {
                       <div className="absolute inset-0 bg-black/40 rounded-[1.4rem]" />
                     )}
 
-                    <div className="relative z-10 flex flex-col items-center w-full flex-1">
+                    {/* Scrollable content wrapper */}
+                    <div className="relative z-10 flex-1 overflow-y-auto w-full">
+                      <div className="flex flex-col items-center w-full min-h-full p-6">
                     {/* Avatar */}
                     <div className={`w-20 h-20 rounded-full flex items-center justify-center text-xl font-extrabold mt-4 mb-2 overflow-hidden ${
                       form.template === "classic" ? "bg-lime text-navy" :
@@ -701,7 +787,7 @@ export default function CreatePage() {
                       form.customBg.textColor === "dark" ? "bg-gray-900 text-white" : "bg-white/20 text-white border-2 border-white/30"
                     }`}>
                       {form.profilePicture ? (
-                        <img src={form.profilePicture} alt="Profile" className="w-full h-full object-cover" style={{ imageRendering: 'auto' }} referrerPolicy="no-referrer" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <img key={form.profilePicture} src={form.profilePicture} alt="Profile" className="w-full h-full object-cover" style={{ imageRendering: 'auto' }} referrerPolicy="no-referrer" onError={(e) => { e.target.style.display = 'none'; }} />
                       ) : (
                         form.username?.charAt(0)?.toUpperCase() || "?"
                       )}
@@ -765,6 +851,7 @@ export default function CreatePage() {
                       🔗 Linkify
                     </p>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>
