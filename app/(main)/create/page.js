@@ -272,8 +272,8 @@ export default function CreatePage() {
                   Username Handle
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-forest-light/50 text-sm font-medium">
-                    linkify.com/
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-forest-light/50 text-xs sm:text-sm font-medium">
+                    linkify/
                   </span>
                   <input
                     id="username"
@@ -286,7 +286,7 @@ export default function CreatePage() {
                       }))
                     }
                     placeholder="yourname"
-                    className="w-full pl-28 pr-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all duration-200 focus:border-navy focus:ring-2 focus:ring-navy/10"
+                    className="w-full pl-20 sm:pl-24 pr-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all duration-200 focus:border-navy focus:ring-2 focus:ring-navy/10"
                   />
                 </div>
                 {hasTree && (
@@ -773,7 +773,7 @@ export default function CreatePage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-sm font-bold text-navy hover:text-forest transition-colors underline underline-offset-2"
                   >
-                    linkify.com/{form.username}
+                    <span className="truncate">linkify/{form.username}</span>
                     <svg
                       className="w-3.5 h-3.5"
                       fill="none"

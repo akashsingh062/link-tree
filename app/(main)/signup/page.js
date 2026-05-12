@@ -53,9 +53,9 @@ export default function SignupPage() {
 
       if (loginRes.ok) {
         toast.success("Account created successfully!");
-        router.push("/create");
+        window.location.href = "/create";
       } else {
-        router.push("/login");
+        window.location.href = "/login";
       }
     } catch (err) {
       toast.error("Network error. Please try again.");
@@ -64,16 +64,16 @@ export default function SignupPage() {
   };
 
   return (
-    <main className="flex-1 flex items-center justify-center px-4 py-16 sm:py-24">
+    <main className="flex-1 flex items-center justify-center px-4 py-16 sm:py-24 relative overflow-hidden">
       {/* Decorative blobs */}
-      <div className="fixed top-20 right-10 w-72 h-72 bg-lime-dark/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="fixed bottom-10 left-10 w-80 h-80 bg-forest/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 right-10 w-72 h-72 bg-lime-dark/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-80 h-80 bg-forest/8 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <span className="text-3xl">🔗</span>
+            <img src="/logo.svg" alt="Linkify" className="w-8 h-8 rounded-lg" />
             <span className="text-2xl font-extrabold text-navy">Linkify</span>
           </Link>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
@@ -104,7 +104,7 @@ export default function SignupPage() {
               required
               value={form.name}
               onChange={handleChange}
-              placeholder="Akash Kumar"
+              placeholder="John Doe"
               className="w-full px-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all duration-200 focus:border-navy focus:ring-2 focus:ring-navy/10"
             />
           </div>
@@ -138,8 +138,8 @@ export default function SignupPage() {
               Username
             </label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-forest-light/50 text-sm font-medium">
-                linkify.com/
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-forest-light/50 text-xs sm:text-sm font-medium">
+                linkify/
               </span>
               <input
                 id="username"
@@ -148,8 +148,8 @@ export default function SignupPage() {
                 required
                 value={form.username}
                 onChange={handleChange}
-                placeholder="akash"
-                className="w-full pl-28 pr-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all duration-200 focus:border-navy focus:ring-2 focus:ring-navy/10"
+                placeholder="johndoe"
+                className="w-full pl-20 sm:pl-24 pr-4 py-3 rounded-xl bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all duration-200 focus:border-navy focus:ring-2 focus:ring-navy/10"
               />
             </div>
           </div>

@@ -17,11 +17,10 @@ export default function Home() {
           </div>
 
           {/* Heading */}
-          <h1 className="animate-fade-in-up-delay-1 text-5xl sm:text-6xl lg:text-7xl font-extrabold text-navy leading-[1.08] tracking-tight">
-            Your entire online
-            <br />
+          <h1 className="animate-fade-in-up-delay-1 text-4xl sm:text-5xl lg:text-7xl font-extrabold text-navy leading-[1.08] tracking-tight">
+            Your entire online{" "}
             <span className="text-forest">presence</span>
-            <br />
+            <br className="hidden sm:block" />{" "}
             in one simple link
           </h1>
 
@@ -68,7 +67,7 @@ export default function Home() {
               {
                 step: "01",
                 title: "Claim your link",
-                desc: "Sign up and pick a unique username. Your page goes live instantly at linkify.com/yourname.",
+                desc: "Sign up and pick a unique username. Your page goes live instantly.",
               },
               {
                 step: "02",

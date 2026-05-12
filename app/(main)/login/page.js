@@ -34,7 +34,8 @@ export default function LoginPage() {
       }
 
       toast.success("Welcome back!");
-      router.push("/create");
+      // Full navigation to ensure auth cookie is picked up (fixes mobile redirect)
+      window.location.href = "/create";
     } catch (err) {
       toast.error("Network error. Please try again.");
       setLoading(false);
@@ -42,16 +43,16 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex-1 flex items-center justify-center px-4 py-16 sm:py-24">
+    <main className="flex-1 flex items-center justify-center px-4 py-16 sm:py-24 relative overflow-hidden">
       {/* Decorative blobs */}
-      <div className="fixed top-20 left-10 w-72 h-72 bg-lime-dark/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="fixed bottom-10 right-10 w-80 h-80 bg-forest/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-lime-dark/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-forest/8 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <span className="text-3xl">🔗</span>
+            <img src="/logo.svg" alt="Linkify" className="w-8 h-8 rounded-lg" />
             <span className="text-2xl font-extrabold text-navy">Linkify</span>
           </Link>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">

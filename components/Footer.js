@@ -41,7 +41,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-              <span className="text-xl transition-transform duration-300 group-hover:rotate-12">🔗</span>
+              <img src="/logo.svg" alt="Linkify" className="w-7 h-7 rounded-md transition-transform duration-300 group-hover:scale-110" />
               <span className="font-extrabold text-lime text-lg">Linkify</span>
             </Link>
             <p className="text-sm leading-relaxed max-w-xs">

@@ -65,9 +65,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-2xl transition-transform duration-300 group-hover:rotate-12">
-              🔗
-            </span>
+            <img
+              src="/logo.svg"
+              alt="Linkify"
+              className="w-8 h-8 rounded-lg transition-transform duration-300 group-hover:scale-110"
+            />
             <span className="text-xl font-extrabold text-navy tracking-tight">
               Linkify
             </span>
