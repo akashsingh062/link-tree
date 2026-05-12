@@ -768,12 +768,12 @@ export default function CreatePage() {
                 <div className="mt-4 text-center">
                   <p className="text-xs text-forest-light mb-1">Your public link:</p>
                   <a
-                    href={`/${form.username}`}
+                    href={`https://link-tree-rho-dun.vercel.app/${form.username}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-sm font-bold text-navy hover:text-forest transition-colors underline underline-offset-2"
                   >
-                    <span className="truncate">linkify/{form.username}</span>
+                    <span className="truncate">link-tree-rho-dun.vercel.app/{form.username}</span>
                     <svg
                       className="w-3.5 h-3.5"
                       fill="none"
