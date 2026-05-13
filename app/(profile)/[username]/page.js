@@ -82,7 +82,7 @@ export default function PublicProfilePage() {
   // ─── Not Found State ───
   if (notFound || !tree) {
     return (
-      <main className="flex-1 flex items-center justify-center min-h-screen bg-gradient-to-br from-lime via-lime-light to-lime relative overflow-hidden px-4">
+      <main className="flex-1 flex items-center justify-center min-h-screen bg-linear-to-br from-lime via-lime-light to-lime relative overflow-hidden px-4">
         {/* Decorative blobs */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-forest/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-navy/5 rounded-full blur-3xl pointer-events-none" />
