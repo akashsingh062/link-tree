@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 
 const Navbar = () => {
@@ -65,10 +66,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <img
+            <Image
               src="/logo.svg"
               alt="Linkify"
-              className="w-8 h-8 rounded-lg transition-transform duration-300 group-hover:scale-110"
+              width={32}
+              height={32}
+              className="rounded-lg transition-transform duration-300 group-hover:scale-110"
             />
             <span className="text-xl font-extrabold text-navy tracking-tight">
               Linkify

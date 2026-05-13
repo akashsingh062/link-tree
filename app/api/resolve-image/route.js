@@ -13,6 +13,44 @@ export async function GET(request) {
     );
   }
 
+  // Validate URL and block private/internal addresses (SSRF protection)
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return NextResponse.json(
+      { message: "Invalid URL format" },
+      { status: 400 }
+    );
+  }
+
+  if (!["http:", "https:"].includes(parsed.protocol)) {
+    return NextResponse.json(
+      { message: "Only HTTP and HTTPS URLs are allowed" },
+      { status: 400 }
+    );
+  }
+
+  const hostname = parsed.hostname;
+  if (
+    hostname === "localhost" ||
+    hostname.startsWith("127.") ||
+    hostname.startsWith("10.") ||
+    hostname.startsWith("192.168.") ||
+    hostname.startsWith("172.16.") || hostname.startsWith("172.17.") ||
+    hostname.startsWith("172.18.") || hostname.startsWith("172.19.") ||
+    hostname.startsWith("172.2") || hostname.startsWith("172.30.") ||
+    hostname.startsWith("172.31.") ||
+    hostname.includes("169.254") ||
+    hostname === "0.0.0.0" ||
+    hostname === "[::1]"
+  ) {
+    return NextResponse.json(
+      { message: "Internal URLs are not allowed" },
+      { status: 400 }
+    );
+  }
+
   try {
     // Fetch the URL, following all redirects
     const res = await fetch(url, {

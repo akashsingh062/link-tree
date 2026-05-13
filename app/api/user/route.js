@@ -24,6 +24,18 @@ export async function POST(request) {
       );
     }
 
+    // Block reserved usernames that conflict with app routes
+    const RESERVED_USERNAMES = [
+      "admin", "api", "login", "signup", "create", "about",
+      "settings", "dashboard", "profile", "help", "support",
+    ];
+    if (RESERVED_USERNAMES.includes(username.toLowerCase().trim())) {
+      return NextResponse.json(
+        { message: "This username is reserved. Please choose another." },
+        { status: 400 }
+      );
+    }
+
     // Check for existing email
     const existingEmail = await User.findOne({ email });
     if (existingEmail) {

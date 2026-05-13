@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export function middleware(request) {
+export function proxy(request) {
   const token = request.cookies.get("token")?.value;
   const { pathname } = request.nextUrl;
 
@@ -29,7 +29,7 @@ export function middleware(request) {
   return NextResponse.next();
 }
 
-// Only run middleware on these paths (skip static files, api routes, etc.)
+// Only run proxy on these paths (skip static files, api routes, etc.)
 export const config = {
   matcher: ["/create/:path*", "/login", "/signup"],
 };

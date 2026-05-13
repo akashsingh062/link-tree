@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import ProfileTemplate from "@/components/ProfileTemplates";
 
@@ -147,9 +148,10 @@ export default function PublicProfilePage() {
           <p className="text-center mt-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-forest-light/50 hover:text-forest transition-colors uppercase tracking-widest"
+              className="inline-flex items-center gap-2 text-xs font-bold text-forest-light/50 hover:text-forest transition-colors uppercase tracking-widest"
             >
-              🔗 Linkify
+              <Image src="/logo.svg" alt="Linkify" width={20} height={20} className="rounded" />
+              Linkify
             </Link>
           </p>
         </div>
@@ -220,9 +222,10 @@ export default function PublicProfilePage() {
       <div className="relative z-20 flex items-center justify-between max-w-2xl mx-auto w-full px-4 py-4 shrink-0">
         <Link
           href="/"
-          className={`inline-flex items-center gap-1.5 text-xs font-bold transition-colors uppercase tracking-widest ${topBarText}`}
+          className={`inline-flex items-center gap-2 text-xs font-bold transition-colors uppercase tracking-widest ${topBarText}`}
         >
-          🔗 Linkify
+          <Image src="/logo.svg" alt="Linkify" width={20} height={20} className="rounded" />
+          Linkify
         </Link>
         <button
           onClick={() => {
@@ -254,29 +257,31 @@ export default function PublicProfilePage() {
 
 // ─── Rotating Glow Border Card ───
 function RotatingGlowCard({ children }) {
-  const beamGradient = `conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 280deg,
-    #ff6b6b 290deg,
-    #ffd93d 310deg,
-    #6bff6b 325deg,
-    #6bd4ff 340deg,
-    #d46bff 350deg,
-    transparent 360deg
-  )`;
-
   return (
     <div className="relative rounded-3xl h-full flex flex-col">
       {/* Spinning beam — only the 2px border edge is visible */}
-      <div className="absolute -inset-[2px] rounded-3xl overflow-hidden" aria-hidden>
-        <div
-          className="absolute inset-[-50%] w-[200%] h-[200%]"
-          style={{
-            background: beamGradient,
-            animation: "spin-border 4s linear infinite",
-          }}
-        />
+      <div
+        className="absolute inset-[-2.5px] rounded-3xl overflow-hidden"
+        aria-hidden
+      >
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vmax] h-[150vmax]">
+          <div
+            className="w-full h-full"
+            style={{
+              background: `conic-gradient(
+                from 0deg,
+                #6bd4ff 0deg,
+                #d46bff 10deg,
+                transparent 30deg,
+                transparent 330deg,
+                #ff6b6b 340deg,
+                #ffd93d 350deg,
+                #6bd4ff 360deg
+              )`,
+              animation: "spin-border 4s linear infinite",
+            }}
+          />
+        </div>
       </div>
 
       {/* Card content sits on top, covering the center */}

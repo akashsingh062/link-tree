@@ -86,7 +86,7 @@ export async function POST(request) {
       username: body.username,
       profilePicture: body.profilePicture || "",
       template: body.template || "classic",
-      customBg: body.customBg || {},
+      ...(body.customBg && { customBg: body.customBg }),
       socialLinks: body.socialLinks || [],
     });
 
@@ -127,6 +127,14 @@ export async function PUT(request) {
     }
 
     const body = await request.json();
+
+    // Reject explicitly empty username
+    if (body.username !== undefined && !body.username.trim()) {
+      return NextResponse.json(
+        { message: "Username cannot be empty" },
+        { status: 400 }
+      );
+    }
 
     // If username is being changed, check it's not taken by someone else and enforce 7-day rule
     if (body.username && body.username !== tree.username) {
