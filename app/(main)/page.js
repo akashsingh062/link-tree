@@ -18,15 +18,15 @@ export default function Home() {
 
           {/* Heading */}
           <h1 className="animate-fade-in-up-delay-1 text-4xl sm:text-5xl lg:text-7xl font-extrabold text-navy leading-[1.08] tracking-tight">
-            Your entire online{" "}
-            <span className="text-forest">presence</span>
+            The free{" "}
+            <span className="text-forest">link-in-bio tool</span>
             <br className="hidden sm:block" />{" "}
-            in one simple link
+            that replaces Linktree
           </h1>
 
           {/* Subtitle */}
           <p className="animate-fade-in-up-delay-2 mt-6 text-lg sm:text-xl text-forest-light max-w-2xl mx-auto leading-relaxed">
-            Share everything you create, curate and sell with a single bio link. Connect your audience to all of your content with just one URL.
+            Linkify is the free link-in-bio tool that lets creators, freelancers, and businesses share all their social profiles, portfolios, and products through one custom URL. No coding. No subscriptions.
           </p>
 
           {/* CTA Group */}
@@ -55,10 +55,10 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight">
-              Up and running in <span className="text-forest">3 steps</span>
+              Create your bio link page in <span className="text-forest">3 steps</span>
             </h2>
             <p className="mt-4 text-forest-light text-lg max-w-xl mx-auto">
-              No coding. No learning curve. Just claim, customize, and share.
+              No coding. No learning curve. Claim your link, customize your page, and share everywhere.
             </p>
           </div>
 
@@ -111,11 +111,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-              Everything you need,<br />
-              <span className="text-lime-light">nothing you don&apos;t.</span>
+              Powerful link-in-bio features,<br />
+              <span className="text-lime-light">no subscription required</span>
             </h2>
             <p className="mt-4 text-lime-light/70 text-lg max-w-xl mx-auto">
-              Powerful features wrapped in a simple, beautiful interface.
+              Everything you need to build a beautiful bio link page, wrapped in a simple interface.
             </p>
           </div>
 
@@ -175,10 +175,10 @@ export default function Home() {
       <section className="py-20 sm:py-24 px-4">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight mb-4">
-            Templates for every style
+            5 customizable bio link templates for every brand
           </h2>
           <p className="text-forest-light text-lg max-w-xl mx-auto mb-14">
-            Choose a preset or design your own — your page, your rules.
+            Pick a premium template or design your own — your link page, your rules.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
@@ -210,10 +210,10 @@ export default function Home() {
           <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-forest/10 rounded-full blur-2xl pointer-events-none" />
 
           <h2 className="relative z-10 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-lime tracking-tight">
-            Ready to simplify your links?
+            Start your free link-in-bio page today
           </h2>
           <p className="relative z-10 mt-4 text-lime-light/70 text-lg max-w-lg mx-auto">
-            Create your personal link page in under a minute. Free forever.
+            Create your personal bio link page in under a minute. Free forever.
           </p>
           <Link
             href="/signup"

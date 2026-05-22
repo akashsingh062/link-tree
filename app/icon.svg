@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f232f"/>
+      <stop offset="100%" stop-color="#304e21"/>
+    </linearGradient>
+    <linearGradient id="link" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d6e752"/>
+      <stop offset="100%" stop-color="#e4f08c"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- Chain link icon -->
+  <g stroke="url(#link)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Top-right link -->
+    <path d="M280 232l-48 48"/>
+    <path d="M312 184a56 56 0 0 1 0 79.2l-56 56a56 56 0 0 1-79.2-79.2l28-28"/>
+    <!-- Bottom-left link -->
+    <path d="M200 280l48-48"/>
+    <path d="M168 328a56 56 0 0 1 0-79.2l56-56a56 56 0 0 1 79.2 79.2l-28 28"/>
+  </g>
+  <!-- Sparkle dot -->
+  <circle cx="364" cy="148" r="14" fill="#d6e752"/>
+  <circle cx="364" cy="148" r="6" fill="#1f232f"/>
+</svg>

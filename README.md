@@ -8,7 +8,7 @@
 
 A modern, open-source Linktree alternative built from scratch in one day.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Linkify-D6E752?style=for-the-badge&logo=vercel&logoColor=black)](https://link-tree-rho-dun.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Linkify-D6E752?style=for-the-badge&logo=vercel&logoColor=black)](https://linkify-ak.vercel.app)
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
@@ -52,7 +52,7 @@ A modern, open-source Linktree alternative built from scratch in one day.
 
 ## 🌐 Live Demo
 
-🔗 **[https://link-tree-rho-dun.vercel.app](https://link-tree-rho-dun.vercel.app)**
+🔗 **[https://linkify-ak.vercel.app](https://linkify-ak.vercel.app)**
 
 > Sign up, create your profile, and share your links — all in under a minute.
 

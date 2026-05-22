@@ -1,9 +1,15 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "About — Linkify",
+  title: "About Linkify — The Free, Open-Source Linktree Alternative",
   description:
-    "Learn how Linkify helps creators, influencers, and businesses share everything they do with a single bio link.",
+    "Linkify is a free, open-source link-in-bio tool built by Akash Singh. Learn how this full-stack Next.js bio link platform was designed and shipped in a single day — with 5 premium templates, custom backgrounds, and zero subscriptions.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Linkify — The Story Behind the Link-in-Bio Tool",
+    description:
+      "A solo developer's passion project. Linkify is a free, open-source link-in-bio tool with 5 premium templates, custom backgrounds, and zero subscriptions.",
+  },
 };
 
 export default function AboutPage() {
@@ -20,13 +26,13 @@ export default function AboutPage() {
             The Story
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy leading-tight tracking-tight">
-            Built solo.
+            The free, open-source
             <br />
-            Built with <span className="text-forest">passion</span>.
+            <span className="text-forest">Linktree alternative</span>
           </h1>
           <p className="mt-6 text-lg text-forest-light max-w-xl mx-auto leading-relaxed">
-            Linkify is a passion project by Akash Singh — designed and
-            developed from scratch in a single day to solve the
+            Linkify is a passion project by Akash Singh — a free link-in-bio tool
+            designed and developed from scratch in a single day to solve the
             &quot;too many links&quot; problem every creator faces.
           </p>
         </div>
@@ -51,7 +57,7 @@ export default function AboutPage() {
           {/* Text */}
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight mb-6">
-              Why I Built This
+              Why I built a free link-in-bio tool
             </h2>
             <div className="space-y-4 text-forest-light leading-relaxed">
               <p>
@@ -93,7 +99,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto pt-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              What I stand for
+              Core principles: what makes Linkify different
             </h2>
             <p className="mt-3 text-lime-light/60 text-lg max-w-lg mx-auto">
               The principles that guided every line of code.
@@ -160,7 +166,7 @@ export default function AboutPage() {
       <section className="py-20 sm:py-28 px-4">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight text-center mb-16">
-            The Build Journey
+            From idea to production in one day
           </h2>
 
           <div className="relative">
@@ -274,7 +280,7 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight text-center mb-12">
-            Built With
+            Linkify&apos;s tech stack — built with Next.js &amp; MongoDB
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[

@@ -57,7 +57,7 @@ export async function GET(request) {
       redirect: "follow",
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (compatible; Linkify/1.0; +https://link-tree-rho-dun.vercel.app)",
+          "Mozilla/5.0 (compatible; Linkify/1.0; +https://linkify-ak.vercel.app)",
       },
     });
 
