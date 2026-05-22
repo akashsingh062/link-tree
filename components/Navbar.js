@@ -61,8 +61,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-xl bg-lime/80 border-b border-forest/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-lime/80 border-b border-forest/10">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main Navigation">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
@@ -217,7 +217,6 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-      </div>
 
       {/* Mobile Menu */}
       <div
@@ -307,6 +306,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+  </header>
   );
 };
 

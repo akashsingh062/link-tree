@@ -18,6 +18,7 @@ function ClassicTemplate({ tree }) {
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
+          alt={`${tree.username || "user"}'s profile picture`}
           className="w-28 h-28 rounded-full overflow-hidden bg-lime flex items-center justify-center text-navy text-4xl font-extrabold shadow-xl shadow-lime/20 mb-4"
         />
         <h1 className="text-2xl sm:text-3xl font-extrabold text-lime text-center tracking-tight">
@@ -53,6 +54,7 @@ function MinimalTemplate({ tree }) {
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
+          alt={`${tree.username || "user"}'s profile picture`}
           className="w-28 h-28 rounded-full overflow-hidden bg-stone-900 flex items-center justify-center text-white text-3xl font-light mb-5"
         />
         <h1 className="text-xl font-medium text-stone-900 text-center tracking-tight">
@@ -89,6 +91,7 @@ function GradientTemplate({ tree }) {
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
+          alt={`${tree.username || "user"}'s profile picture`}
           className="w-28 h-28 rounded-full overflow-hidden bg-white/20 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center text-white text-4xl font-extrabold mb-4 shadow-2xl"
         />
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white text-center tracking-tight drop-shadow-lg">
@@ -126,6 +129,7 @@ function NeonTemplate({ tree }) {
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
+          alt={`${tree.username || "user"}'s profile picture`}
           className="w-28 h-28 rounded-full overflow-hidden bg-zinc-900 border-2 border-cyan-400/50 flex items-center justify-center text-cyan-400 text-4xl font-extrabold mb-4 shadow-[0_0_30px_rgba(34,211,238,0.2)]"
         />
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white text-center tracking-tight">
@@ -206,6 +210,7 @@ function CustomTemplate({ tree }) {
         <ProfileAvatar
           src={tree.profilePicture}
           fallbackLetter={tree.username?.charAt(0)?.toUpperCase() || "?"}
+          alt={`${tree.username || "user"}'s profile picture`}
           className={`w-28 h-28 rounded-full overflow-hidden flex items-center justify-center text-4xl font-extrabold mb-4 shadow-xl ${avatarBg}`}
         />
         <h1 className={`text-2xl sm:text-3xl font-extrabold text-center tracking-tight ${textMain}`}>

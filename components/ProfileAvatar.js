@@ -12,6 +12,7 @@ export default function ProfileAvatar({
   fallbackLetter = "?",
   size = 112,
   className = "",
+  alt = "Profile Picture",
 }) {
   const [imgError, setImgError] = useState(false);
 
@@ -27,7 +28,7 @@ export default function ProfileAvatar({
     <div className={className}>
       <Image
         src={src}
-        alt="Profile"
+        alt={alt}
         width={size}
         height={size}
         className="w-full h-full object-cover"

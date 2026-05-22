@@ -39,9 +39,24 @@ export async function generateMetadata({ params }) {
   const linkCount = tree.socialLinks?.length || 0;
   const title = tree.title && tree.title !== "My Links" ? tree.title : `${username}'s Links`;
 
+  // Dynamically extract unique social media platforms to enrich long-tail SEO keywords
+  const platforms = tree.socialLinks
+    ?.map((link) => link.platform?.trim())
+    .filter(Boolean)
+    .map((p) => p.charAt(0).toUpperCase() + p.slice(1));
+  const uniquePlatforms = Array.from(new Set(platforms || []));
+  const platformsText =
+    uniquePlatforms.length > 0
+      ? ` Connect with them on ${uniquePlatforms.slice(0, 4).join(", ")}.`
+      : "";
+
+  const profileDescription = `Check out @${username}'s link-in-bio page on Linkify. ${linkCount} link${
+    linkCount !== 1 ? "s" : ""
+  } shared.${platformsText} Explore their social profiles, portfolio, and more.`;
+
   return {
     title: `@${username} — ${title}`,
-    description: `Check out @${username}'s link-in-bio page on Linkify. ${linkCount} link${linkCount !== 1 ? "s" : ""} shared. Explore their social profiles, portfolio, and more.`,
+    description: profileDescription,
     alternates: { canonical: `/${username}` },
     openGraph: {
       title: `@${username} on Linkify`,
