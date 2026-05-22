@@ -1,16 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export const metadata = {
-  title: "Page Not Found",
-  description:
-    "The page you're looking for doesn't exist. Create your free link-in-bio page on Linkify.",
-  robots: { index: false, follow: true },
-};
-
 export default function NotFound() {
   return (
     <main className="flex-1 flex items-center justify-center min-h-screen bg-linear-to-br from-lime via-lime-light to-lime relative overflow-hidden px-4">
+      <head>
+        <title>Page Not Found | Linkify</title>
+        <meta name="description" content="The page you're looking for doesn't exist. Create your free link-in-bio page on Linkify." />
+        <meta name="robots" content="noindex, follow" />
+      </head>
       {/* Decorative blobs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-forest/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-navy/5 rounded-full blur-3xl pointer-events-none" />

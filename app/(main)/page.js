@@ -1,7 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Linkify — Free Link-in-Bio Tool | One Link for Everything",
+  title: {
+    absolute: "Linkify — Free Link-in-Bio Tool | One Link for Everything",
+  },
   description:
     "Create your free link-in-bio page in seconds. Replaces Linktree with 5 beautiful templates, custom backgrounds, and a live preview editor. Claim your custom URL now!",
   alternates: { canonical: "/" },
