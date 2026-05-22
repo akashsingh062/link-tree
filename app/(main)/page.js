@@ -194,12 +194,12 @@ export default function Home() {
             {[
               { name: "Classic", bg: "bg-navy", text: "text-lime", accent: "bg-lime" },
               { name: "Minimal", bg: "bg-stone-50 border border-stone-200", text: "text-stone-900", accent: "bg-stone-900" },
-              { name: "Gradient", bg: "bg-gradient-to-br from-violet-600 via-fuchsia-500 to-orange-400", text: "text-white", accent: "bg-white/30" },
+              { name: "Gradient", bg: "bg-linear-to-br from-violet-600 via-fuchsia-500 to-orange-400", text: "text-white", accent: "bg-white/30" },
               { name: "Neon", bg: "bg-zinc-950", text: "text-cyan-400", accent: "bg-zinc-800 border border-cyan-400/50" },
-              { name: "Custom", bg: "bg-gradient-to-br from-rose-500 to-indigo-600", text: "text-white", accent: "bg-white/30" },
+              { name: "Custom", bg: "bg-linear-to-br from-rose-500 to-indigo-600", text: "text-white", accent: "bg-white/30" },
             ].map((t) => (
               <div key={t.name} className="group">
-                <div className={`${t.bg} rounded-2xl p-5 aspect-[3/4] flex flex-col items-center justify-center gap-3 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl`}>
+                <div className={`${t.bg} rounded-2xl p-5 aspect-3/4 flex flex-col items-center justify-center gap-3 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl`}>
                   <div className={`w-10 h-10 rounded-full ${t.accent}`} />
                   <div className={`w-full h-2 rounded-full ${t.accent} opacity-60`} />
                   <div className={`w-3/4 h-2 rounded-full ${t.accent} opacity-40`} />

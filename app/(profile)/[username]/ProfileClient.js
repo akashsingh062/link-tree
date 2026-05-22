@@ -215,7 +215,7 @@ export default function ProfileClient({ username, initialTree }) {
 
   // ─── Render the user's selected template in a container ───
   return (
-    <div className={`h-[100dvh] ${containerBg} relative overflow-hidden flex flex-col`}>
+    <div className={`h-dvh ${containerBg} relative overflow-hidden flex flex-col`}>
       {/* Ambient background glow */}
       {glowOrbs}
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { PlatformIcon, PLATFORMS } from "@/components/PlatformIcons";
 import { TEMPLATES, getCustomBgStyle } from "@/components/ProfileTemplates";
 import toast from "react-hot-toast";
@@ -386,7 +387,7 @@ export default function CreatePage() {
                     }`}
                   >
                     {/* Mini preview */}
-                    <div className={`w-full aspect-[3/4] rounded-lg ${tmpl.preview.bg} flex flex-col items-center justify-center gap-1.5 p-2 mb-2`}>
+                    <div className={`w-full aspect-3/4 rounded-lg ${tmpl.preview.bg} flex flex-col items-center justify-center gap-1.5 p-2 mb-2`}>
                       <div className={`w-6 h-6 rounded-full ${tmpl.preview.accent}`} />
                       <div className={`w-10 h-1 rounded-full ${tmpl.preview.accent} opacity-60`} />
                       <div className={`w-full h-2 rounded ${tmpl.preview.accent} opacity-30 mt-1`} />
@@ -564,8 +565,8 @@ export default function CreatePage() {
                       Paste any URL — Pinterest, Unsplash, etc. Click Resolve to extract the image.
                     </p>
                     {form.customBg.imageUrl && (
-                      <div className="mt-3 h-24 rounded-lg overflow-hidden border border-forest/10">
-                        <img key={form.customBg.imageUrl} src={form.customBg.imageUrl} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" onError={(e) => { e.target.style.display = 'none'; }} />
+                      <div className="mt-3 h-24 rounded-lg overflow-hidden border border-forest/10 relative">
+                        <Image key={form.customBg.imageUrl} src={form.customBg.imageUrl} alt="Preview" fill className="object-cover" unoptimized />
                       </div>
                     )}
                   </div>
@@ -660,7 +661,7 @@ export default function CreatePage() {
                         value={link.url}
                         onChange={(e) => updateLink(index, "url", e.target.value)}
                         placeholder="https://..."
-                        className="flex-[2] w-full px-3 py-2.5 rounded-lg bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all focus:border-navy focus:ring-2 focus:ring-navy/10"
+                        className="flex-2 w-full px-3 py-2.5 rounded-lg bg-lime-light/30 border border-forest/15 text-navy placeholder:text-forest-light/50 text-sm font-medium outline-none transition-all focus:border-navy focus:ring-2 focus:ring-navy/10"
                       />
                     </div>
                   </div>
@@ -755,18 +756,19 @@ export default function CreatePage() {
                     className={`rounded-[1.4rem] max-h-[520px] min-h-[480px] overflow-hidden flex flex-col relative ${
                       form.template === "classic" ? "bg-navy" :
                       form.template === "minimal" ? "bg-stone-50" :
-                      form.template === "gradient" ? "bg-gradient-to-br from-violet-600 via-fuchsia-500 to-orange-400" :
+                      form.template === "gradient" ? "bg-linear-to-br from-violet-600 via-fuchsia-500 to-orange-400" :
                       form.template === "neon" ? "bg-zinc-950" : ""
                     }`}
                     style={form.template === "custom" && form.customBg.bgType !== "image" ? getCustomBgStyle(form.customBg) : {}}
                   >
-                    {/* Image background using <img> for better rendering */}
+                    {/* Image background using Next.js Image */}
                     {form.template === "custom" && form.customBg.bgType === "image" && form.customBg.imageUrl && (
-                      <img
+                      <Image
                         src={form.customBg.imageUrl}
-                        alt=""
-                        className="absolute inset-0 w-full h-full object-cover"
-                        referrerPolicy="no-referrer"
+                        alt="Background Image"
+                        fill
+                        className="object-cover"
+                        unoptimized
                       />
                     )}
 
@@ -787,7 +789,7 @@ export default function CreatePage() {
                       form.customBg.textColor === "dark" ? "bg-gray-900 text-white" : "bg-white/20 text-white border-2 border-white/30"
                     }`}>
                       {form.profilePicture ? (
-                        <img key={form.profilePicture} src={form.profilePicture} alt="Profile" className="w-full h-full object-cover" style={{ imageRendering: 'auto' }} referrerPolicy="no-referrer" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <Image key={form.profilePicture} src={form.profilePicture} alt="Profile Picture" width={80} height={80} className="w-full h-full object-cover" unoptimized />
                       ) : (
                         form.username?.charAt(0)?.toUpperCase() || "?"
                       )}

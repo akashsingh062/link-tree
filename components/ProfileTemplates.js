@@ -84,7 +84,7 @@ function MinimalTemplate({ tree }) {
 // Vibrant gradient bg, glassmorphic cards
 function GradientTemplate({ tree }) {
   return (
-    <main className="flex-1 bg-gradient-to-br from-violet-600 via-fuchsia-500 to-orange-400 relative overflow-hidden flex flex-col h-full w-full">
+    <main className="flex-1 bg-linear-to-br from-violet-600 via-fuchsia-500 to-orange-400 relative overflow-hidden flex flex-col h-full w-full">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZyIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCBmaWxsPSJ1cmwoI2cpIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PC9zdmc+')] pointer-events-none" />
       <div className="relative z-10 flex-1 overflow-y-auto w-full min-h-0">
         <div className="max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center min-h-full">
@@ -193,14 +193,15 @@ function CustomTemplate({ tree }) {
 
   return (
     <main className="flex-1 relative overflow-hidden flex flex-col h-full w-full" style={bgStyle}>
-      {/* Image background — using <img> for cross-origin reliability */}
+      {/* Image background using Next.js Image */}
       {bg.bgType === "image" && bg.imageUrl && (
         <>
-          <img
+          <Image
             src={bg.imageUrl}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-            referrerPolicy="no-referrer"
+            alt="Background Image"
+            fill
+            className="object-cover"
+            unoptimized
           />
           <div className="absolute inset-0 bg-black/40 pointer-events-none" />
         </>
@@ -287,7 +288,7 @@ export const TEMPLATES = [
     id: "gradient",
     name: "Gradient",
     desc: "Vibrant & bold",
-    preview: { bg: "bg-gradient-to-br from-violet-600 via-fuchsia-500 to-orange-400", accent: "bg-white/30", text: "text-white" },
+    preview: { bg: "bg-linear-to-br from-violet-600 via-fuchsia-500 to-orange-400", accent: "bg-white/30", text: "text-white" },
   },
   {
     id: "neon",
@@ -299,7 +300,7 @@ export const TEMPLATES = [
     id: "custom",
     name: "Custom",
     desc: "Your own style",
-    preview: { bg: "bg-gradient-to-br from-rose-500 to-indigo-600", accent: "bg-white/30", text: "text-white" },
+    preview: { bg: "bg-linear-to-br from-rose-500 to-indigo-600", accent: "bg-white/30", text: "text-white" },
     isCustom: true,
   },
 ];
