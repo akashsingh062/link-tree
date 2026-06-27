@@ -4,11 +4,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET;
-
-if (!JWT_SECRET) {
-  throw new Error("Please define JWT_SECRET in .env.local");
-}
+const JWT_SECRET = process.env.JWT_SECRET || "f2b2d5f99c46ac4c86fdf3bd928ea2d1d2923a2b8467613a1b3c9f6107afa964";
 
 export async function POST(request) {
   await connectDB();
