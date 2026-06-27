@@ -6,8 +6,17 @@ export async function POST() {
     { status: 200 }
   );
 
-  // Clear the token cookie
+  // Clear the legacy token cookie
   response.cookies.set("token", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 0,
+    path: "/",
+  });
+
+  // Clear Better Auth session cookie
+  response.cookies.set("better-auth.session_token", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",

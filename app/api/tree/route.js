@@ -3,9 +3,28 @@ import { LinkTree } from "@/lib/model/LinkTree";
 import { User } from "@/lib/model/User";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-// Helper: extract user from JWT cookie
-function getUser(request) {
+// Helper: extract user from Better Auth or JWT cookie
+async function getUser(request) {
+  // Try Better Auth first
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+    if (session?.user) {
+      return {
+        id: session.user.id,
+        username: session.user.username,
+        email: session.user.email,
+      };
+    }
+  } catch (error) {
+    console.error("getUser Better Auth session check error:", error);
+  }
+
+  // Fallback to legacy JWT token
   const token = request.cookies.get("token")?.value;
   if (!token) return null;
   try {
@@ -93,7 +112,7 @@ function refreshJwtCookie(response, userDoc) {
 // ─── GET: Fetch the logged-in user's link tree ───
 export async function GET(request) {
   await connectDB();
-  const user = getUser(request);
+  const user = await getUser(request);
 
   if (!user) {
     return NextResponse.json(
@@ -131,7 +150,7 @@ export async function GET(request) {
 // ─── POST: Create a new link tree for the logged-in user ───
 export async function POST(request) {
   await connectDB();
-  const user = getUser(request);
+  const user = await getUser(request);
 
   if (!user) {
     return NextResponse.json(
@@ -202,7 +221,7 @@ export async function POST(request) {
 // ─── PUT: Update the logged-in user's link tree ───
 export async function PUT(request) {
   await connectDB();
-  const user = getUser(request);
+  const user = await getUser(request);
 
   if (!user) {
     return NextResponse.json(
@@ -281,7 +300,7 @@ export async function PUT(request) {
 // ─── DELETE: Delete the logged-in user's link tree ───
 export async function DELETE(request) {
   await connectDB();
-  const user = getUser(request);
+  const user = await getUser(request);
 
   if (!user) {
     return NextResponse.json(
