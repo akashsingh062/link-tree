@@ -67,8 +67,13 @@ export default function CreatePage() {
           });
           setHasTree(true);
         } else {
-          // Default username to their account username
-          setForm((prev) => ({ ...prev, username: meData.user.username }));
+          // Default username and profile picture/title to their account values
+          setForm((prev) => ({
+            ...prev,
+            username: meData.user.username || "",
+            profilePicture: meData.user.image || "",
+            title: meData.user.name ? `${meData.user.name}'s Links` : "My Links",
+          }));
         }
       } catch (err) {
         console.error(err);
@@ -138,6 +143,7 @@ export default function CreatePage() {
 
       setHasTree(true);
       toast.success(data.message);
+      window.dispatchEvent(new Event("userUpdated"));
     } catch (err) {
       toast.error("Network error. Please try again.");
     } finally {

@@ -20,7 +20,7 @@ const Navbar = () => {
     { label: "Create", href: "/create" },
   ];
 
-  // Re-check auth status on every route change
+  // Re-check auth status on every route change or custom userUpdated event
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -38,6 +38,9 @@ const Navbar = () => {
       }
     };
     checkAuth();
+
+    window.addEventListener("userUpdated", checkAuth);
+    return () => window.removeEventListener("userUpdated", checkAuth);
   }, [pathname]);
 
   // Close dropdown on outside click
@@ -106,8 +109,19 @@ const Navbar = () => {
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   className="flex items-center gap-2.5 px-3 py-1.5 rounded-full border-2 border-forest/15 transition-all duration-200 hover:border-navy hover:bg-forest/5"
                 >
-                  <div className="w-8 h-8 rounded-full bg-navy flex items-center justify-center text-lime text-xs font-bold">
-                    {user.username?.charAt(0).toUpperCase()}
+                  <div className="w-8 h-8 rounded-full bg-navy flex items-center justify-center text-lime text-xs font-bold overflow-hidden">
+                    {user.image ? (
+                      <Image
+                        src={user.image}
+                        alt={user.username || "Profile"}
+                        width={32}
+                        height={32}
+                        className="w-full h-full object-cover"
+                        unoptimized
+                      />
+                    ) : (
+                      user.username?.charAt(0).toUpperCase() || "?"
+                    )}
                   </div>
                   <span className="text-sm font-semibold text-navy max-w-[100px] truncate">
                     {user.username}

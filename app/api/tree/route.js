@@ -18,6 +18,8 @@ async function getUser(request) {
         id: session.user.id,
         username: session.user.username,
         email: session.user.email,
+        name: session.user.name,
+        image: session.user.image,
       };
     }
   } catch (error) {
@@ -28,7 +30,15 @@ async function getUser(request) {
   const token = request.cookies.get("token")?.value;
   if (!token) return null;
   try {
-    return jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userDoc = await User.findById(decoded.id).select("name image");
+    return {
+      id: decoded.id,
+      username: decoded.username,
+      email: decoded.email,
+      name: userDoc?.name || "",
+      image: userDoc?.image || "",
+    };
   } catch {
     return null;
   }
@@ -189,8 +199,8 @@ export async function POST(request) {
 
     const tree = new LinkTree({
       user: user.id,
-      title: body.title || "My Links",
-      profilePicture: body.profilePicture || "",
+      title: body.title || (user.name ? `${user.name}'s Links` : "My Links"),
+      profilePicture: body.profilePicture || user.image || "",
       template: body.template || "classic",
       ...(body.customBg && { customBg: body.customBg }),
       socialLinks: body.socialLinks || [],
