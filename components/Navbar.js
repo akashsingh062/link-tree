@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
   const router = useRouter();
@@ -55,6 +56,11 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = async () => {
+    try {
+      await authClient.signOut();
+    } catch (err) {
+      console.error("Better Auth signOut error:", err);
+    }
     await fetch("/api/auth/logout", { method: "POST" });
     setUser(null);
     setDropdownOpen(false);

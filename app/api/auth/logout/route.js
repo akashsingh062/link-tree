@@ -24,5 +24,14 @@ export async function POST() {
     path: "/",
   });
 
+  // Clear Secure Better Auth session cookie for HTTPS/production
+  response.cookies.set("__Secure-better-auth.session_token", "", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    maxAge: 0,
+    path: "/",
+  });
+
   return response;
 }
